@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+{% block content %}
+    <h1>Chat with {{ user }}</h1>
+    <hr>
+    <h3>{{ time_now|date:'M d Y' }}</h3>
+    <hr>
+    <h3>Messages</h3>
+    <hr>
+    <form action="/chat/{{ user.id }}" method="post">
+    {% csrf_token %} <!-- CSRF protection -->
+        <input type="text" name="message" placeholder="Enter your message">
+        <input type="submit" value="Send">
+    </form>
+    <hr>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

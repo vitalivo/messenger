@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Messenger App</h1>
+    <h3>{{ time_now|date:'M d Y' }}</h3>
+    <hr>
+    {% if users %}
+        <table>
+        <tr>
+            <td>Имя</td>
+            <td>Аватар</td>
+            <tr>
+            {% for user in users %}
+                <td>{{ user }}</td>
+                <td><img src="{{ avatar }}" alt="avatar"></td>
+                <td><a href="/chat/{{ user.id }}">Написать</a></td>
+            {% endfor %}
+        </tr>
+        </table>
+    {% endif %}
+
+{% block content %}
+{% endblock %}
+</body>
+</html>
